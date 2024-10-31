@@ -1,0 +1,2 @@
+INSERT INTO employee (id, first_name, last_name, gender, birth_date, joining_date, email, position)
+VALUES (1, 'John', 'Doe', 0, '1970-01-01', '2000-01-01', 'john.doe@example.com', 'Head Of operations');
