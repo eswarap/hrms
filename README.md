@@ -41,11 +41,6 @@ including CRUD operations for employee data, department management, and role ass
     ```bash
     mvn spring-boot:run
 
-## Access the API documentation:
-Once the application is running, you can access the Swagger UI at:
-text
-http://localhost:8080/swagger-ui.html
-
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 ## Acknowledgments
