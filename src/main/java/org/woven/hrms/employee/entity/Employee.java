@@ -1,4 +1,4 @@
-package org.woven.demo.hrms.entity;
+package org.woven.hrms.employee.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.woven.demo.hrms.model.Gender;
+import lombok.ToString;
+import org.woven.hrms.employee.model.Gender;
 
 import java.time.LocalDate;
 
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

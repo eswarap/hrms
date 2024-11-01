@@ -1,4 +1,4 @@
-package org.woven.demo.hrms.controller;
+package org.woven.hrms.employee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.woven.demo.hrms.entity.Employee;
-import org.woven.demo.hrms.service.EmployeeService;
+import org.woven.hrms.employee.entity.Employee;
+import org.woven.hrms.employee.service.EmployeeService;
 
 import java.net.URI;
 import java.util.List;
