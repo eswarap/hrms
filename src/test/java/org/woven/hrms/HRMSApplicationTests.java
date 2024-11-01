@@ -37,8 +37,8 @@ class HRMSApplicationTests {
 	}
 
 	@Test
-	void addEmpployee() {
-		Employee employee = new Employee((long) new Random().nextInt(),"Tom","Holland", Gender.Male,
+	void addEmployee() {
+		Employee employee = new Employee((long) new Random().nextInt(300),"Tom","Holland", Gender.Male,
 				LocalDate.EPOCH,LocalDate.EPOCH,
 				"tom.holland@example.com","Chief Of operations");
 		given().when().contentType("application/json").body(employee).post("/api/v1/hrms/employee")
