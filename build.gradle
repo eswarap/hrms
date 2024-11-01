@@ -36,7 +36,9 @@ dependencies {
 	testImplementation 'io.rest-assured:rest-assured:5.4.0'
 	testImplementation 'io.rest-assured:json-path:5.4.0'
 	testImplementation 'io.rest-assured:xml-path:5.4.0'
-
+	testImplementation 'com.tngtech.archunit:archunit:1.3.0'
+	testImplementation 'com.tngtech.archunit:archunit-junit5:1.3.0'
+	testImplementation 'com.tngtech.archunit:archunit-junit5-api:1.3.0'
 
 }
 
