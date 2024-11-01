@@ -1,7 +1,7 @@
-package org.woven.demo.hrms.util;
+package org.woven.hrms.employee.util;
 
-import org.woven.demo.hrms.entity.Employee;
-import org.woven.demo.hrms.model.Gender;
+import org.woven.hrms.employee.entity.Employee;
+import org.woven.hrms.employee.model.Gender;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;

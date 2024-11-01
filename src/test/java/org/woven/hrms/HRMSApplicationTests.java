@@ -1,4 +1,4 @@
-package org.woven.demo.hrms;
+package org.woven.hrms;
 
 
 import io.restassured.RestAssured;
@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.woven.demo.hrms.entity.Employee;
-import org.woven.demo.hrms.model.Gender;
+import org.woven.hrms.employee.entity.Employee;
+import org.woven.hrms.employee.model.Gender;
 
 import java.time.LocalDate;
 import java.util.Random;
