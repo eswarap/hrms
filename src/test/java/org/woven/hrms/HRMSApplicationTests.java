@@ -12,6 +12,7 @@ import org.woven.hrms.employee.model.Gender;
 import java.time.LocalDate;
 import java.util.Random;
 
+import static io.restassured.RestAssured.basic;
 import static io.restassured.RestAssured.given;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -24,6 +25,7 @@ class HRMSApplicationTests {
 	@BeforeEach
 	 void setUp() {
 		RestAssured.port = port;
+		RestAssured.authentication = basic("user","password");
 	}
 	@Test
 	void getAllEmployees(){
