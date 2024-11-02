@@ -9,3 +9,8 @@
         "position" varchar(255),
         primary key ("id")
     );
+
+CREATE SEQUENCE EMPLOYEE_SEQUENCE
+ MINVALUE 1
+ START WITH 50
+ INCREMENT BY 2;

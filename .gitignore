@@ -1,0 +1,10 @@
+/.idea/
+/.idea/modules
+/.gradle/
+/build/
+gradlew
+gradlew.bat
+.idea/modules/hrms.test.iml
+.idea/modules.xml
+*.iml
+

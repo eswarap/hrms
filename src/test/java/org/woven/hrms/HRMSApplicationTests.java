@@ -28,7 +28,6 @@ class HRMSApplicationTests {
 	@Test
 	void getAllEmployees(){
 		given().get("/api/v1/hrms/employees").then().statusCode(200);
-
 	}
 
 	@Test
