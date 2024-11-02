@@ -36,7 +36,8 @@ public class HRMSArchitectureTests {
             .andShould().resideInAPackage("..controller")
             .as("Controller classes annotated with @RestController")
             .as("must reside in controller package ")
-            .as("and have name ending with Controller");
+            .as("and have name ending with Controller")
+            .because("Controller classes should reside in controller");
 
     @ArchTest
     ArchRule controllerMethodsShouldBeAnnotated = methods().that(areControllerMethods())
@@ -85,9 +86,13 @@ public class HRMSArchitectureTests {
             .layer("Service").definedBy(areServiceClasses())
             .layer("Controller").definedBy(areControllerClasses())
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
+            .as("Controller layer should not be accessed by any other layer")
             .whereLayer("Controller").mayOnlyAccessLayers("Service","Entity")
+            .as("Controller layer may only access Service or Entity layer")
             .whereLayer("Service").mayOnlyAccessLayers("Repository", "Entity")
+            .as("Service layer may only access Repository or Entity layer")
             .whereLayer("Repository").mayOnlyAccessLayers("Entity")
+            .as("Repository layer may only access Entity layer")
             .as("Layered Architecture Rules");
 
 
