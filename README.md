@@ -45,9 +45,6 @@ including CRUD operations for employee data, department management, and role ass
 This project is licensed under the MIT License - see the LICENSE file for details.
 ## Acknowledgments
 Thanks to all contributors and libraries used in this project that made it possible.
-## Contact Information
-For inquiries or support, please contact me at [your.email@example.com].
-text
 
 ### Notes on Customization:
 
