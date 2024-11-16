@@ -3,6 +3,7 @@ package org.woven.hrms;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -12,7 +13,6 @@ import org.woven.hrms.employee.model.Gender;
 import java.time.LocalDate;
 import java.util.Random;
 
-import static io.restassured.RestAssured.basic;
 import static io.restassured.RestAssured.given;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -25,19 +25,21 @@ class HRMSApplicationTests {
 	@BeforeEach
 	 void setUp() {
 		RestAssured.port = port;
-		RestAssured.authentication = basic("user","password");
 	}
 	@Test
+	@Order(2)
 	void getAllEmployees(){
 		given().get("/api/v1/hrms/employees").then().statusCode(200);
 	}
 
 	@Test
+	@Order(1)
 	void getEmployee(){
 		given().when().get("/api/v1/hrms/employee/1").then().statusCode(200);
 	}
 
 	@Test
+	@Order(0)
 	void addEmployee() {
 		Employee employee = new Employee((long) new Random().nextInt(300),"Tom","Holland", Gender.Male,
 				LocalDate.EPOCH,LocalDate.EPOCH,
