@@ -2,7 +2,6 @@ package org.woven.hrms.employee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.woven.hrms.employee.dto.EmployeeDTO;
 import org.woven.hrms.employee.entity.Employee;
 import org.woven.hrms.employee.service.EmployeeService;
 
@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/hrms")
-@CrossOrigin
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -37,14 +36,24 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employee.setGender(employeeDTO.getGender());
+        employee.setBirthDate(employeeDTO.getBirthDate());
         Employee savedEmployee = employeeService.addEmployee(employee);
         return ResponseEntity.created(URI.create("/api/employees/" + savedEmployee.getId())).body(savedEmployee);
     }
 
     @PutMapping("/employee/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
-                                                   @RequestBody Employee employee) {
+                                                   @RequestBody EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employee.setGender(employeeDTO.getGender());
+        employee.setBirthDate(employeeDTO.getBirthDate());
         Optional<Employee> existingEmployee = employeeService.updateEmployee(id,
                 employee);
         return existingEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
