@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.woven.hrms.employee.dto.EmployeeDTO;
+import org.woven.hrms.employee.model.EmployeeDTO;
 import org.woven.hrms.employee.entity.Employee;
 import org.woven.hrms.employee.service.EmployeeService;
 
