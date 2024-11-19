@@ -1,4 +1,4 @@
-package org.woven.hrms.employee.controller;
+package org.woven.hrms.employee.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,5 +15,4 @@ public class LoginResponse {
     private String message;
     private List<String> authorities;
 
-    // getters, setters, constructor
 }

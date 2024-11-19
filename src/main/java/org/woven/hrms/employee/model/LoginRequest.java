@@ -1,4 +1,4 @@
-package org.woven.hrms.employee.controller;
+package org.woven.hrms.employee.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,4 @@ import lombok.Setter;
 public class LoginRequest {
     private String username;
     private String password;
-
-    // getters, setters, constructor
 }
