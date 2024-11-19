@@ -8,3 +8,13 @@ gradlew.bat
 .idea/modules.xml
 *.iml
 
+/.idea/
+/out/
+/build/
+/*.iml
+/*.ipr
+/*.iws
+/*.nix
+/*.log
+/*.swp
+/*.DS_Store
