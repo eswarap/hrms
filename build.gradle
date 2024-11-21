@@ -17,9 +17,22 @@ repositories {
 	mavenCentral()
 }
 
+compileJava {
+	options.compilerArgs += '-parameters'
+}
+
+tasks.jar {
+	manifest {
+		attributes(
+				'Main-Class': 'org.woven.hrms.Application'
+		)
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

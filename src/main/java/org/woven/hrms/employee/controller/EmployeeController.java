@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.woven.hrms.employee.model.EmployeeDTO;
 import org.woven.hrms.employee.entity.Employee;
 import org.woven.hrms.employee.service.EmployeeService;
 
@@ -25,42 +24,42 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
+    public List<org.woven.hrms.employee.entity.Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
+        Optional<org.woven.hrms.employee.entity.Employee> employee = employeeService.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Employee employee = new Employee();
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employeeDTO) {
+        org.woven.hrms.employee.entity.Employee employee = new org.woven.hrms.employee.entity.Employee();
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setGender(employeeDTO.getGender());
         employee.setBirthDate(employeeDTO.getBirthDate());
-        Employee savedEmployee = employeeService.addEmployee(employee);
+        org.woven.hrms.employee.entity.Employee savedEmployee = employeeService.addEmployee(employee);
         return ResponseEntity.created(URI.create("/api/employees/" + savedEmployee.getId())).body(savedEmployee);
     }
 
     @PutMapping("/employee/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
-                                                   @RequestBody EmployeeDTO employeeDTO) {
-        Employee employee = new Employee();
+    public ResponseEntity<Employee> updateEmployee(@PathVariable String id,
+                                                                                  @RequestBody Employee employeeDTO) {
+        org.woven.hrms.employee.entity.Employee employee = new org.woven.hrms.employee.entity.Employee();
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setGender(employeeDTO.getGender());
         employee.setBirthDate(employeeDTO.getBirthDate());
-        Optional<Employee> existingEmployee = employeeService.updateEmployee(id,
+        Optional<org.woven.hrms.employee.entity.Employee> existingEmployee = employeeService.updateEmployee(id,
                 employee);
         return existingEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/employee/{id}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }

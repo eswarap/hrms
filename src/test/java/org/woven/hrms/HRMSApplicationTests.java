@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,7 @@ class HRMSApplicationTests {
 	@BeforeEach
 	 void setUp() {
 		RestAssured.port = port;
+		RestAssured.defaultParser = Parser.JSON;
 	}
 	@Test
 	@Order(2)
@@ -47,12 +49,12 @@ class HRMSApplicationTests {
 	@Test
 	@Order(0)
 	void addEmployee() {
-		Employee employee = new Employee((long) new Random().nextInt(300),"Tom","Holland", Gender.Male,
+		Employee employee = new Employee(String.valueOf(new Random().nextInt(300)),"Tom","Holland", Gender.Male,
 				LocalDate.EPOCH,LocalDate.EPOCH,
 				"tom.holland@example.com","Chief Of operations");
 		given().auth().basic("admin","admin").when().contentType("application/json")
 				.body(employee).post("/api/v1/hrms/employee")
-				.thenReturn().body().prettyPrint();
+				.thenReturn().body().as(Employee.class).equals(employee);
 	}
 
 	@Test

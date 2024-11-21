@@ -41,7 +41,7 @@ public class SQLGenerator {
 
     public static void main(String[] args) {
 
-        Employee employee = new Employee(Long.valueOf("1"), "John","Doe", Gender.Male,
+        Employee employee = new Employee("1", "John","Doe", Gender.Male,
                 LocalDate.EPOCH,LocalDate.EPOCH,
                 "john.doe@example.com","Head Of operations");
         String sql = generateInsertSQL(employee);
