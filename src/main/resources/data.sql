@@ -32,3 +32,18 @@ INSERT INTO employee (id ,first_name ,last_name ,gender ,birth_date ,joining_dat
 VALUES (16 ,'Nina' ,'Lewis' ,1,'1991-06-18','2019-08-22','nina.lewis@example.com','Marketing Specialist');
 INSERT INTO employee (id ,first_name ,last_name ,gender ,birth_date ,joining_date ,email ,position )
 VALUES (17 ,'Oscar' ,'Lee' ,1,'1984-04-20','2017-05-10','oscar.lee@example.com','Financial Analyst');
+
+INSERT INTO users (id, username, password) VALUES ('1', 'user', 'password');
+INSERT INTO users (id, username, password) VALUES ('2', 'admin', 'password');
+INSERT INTO users (id, username, password) VALUES ('3', 'manager', 'password');
+
+INSERT INTO roles (id, role_name) VALUES ('1', 'USER');
+INSERT INTO roles (id, role_name) VALUES ('2', 'ADMIN');
+INSERT INTO roles (id, role_name) VALUES ('3', 'MANAGER');
+
+INSERT INTO user_roles (user_id, role_id) VALUES (1,1);
+INSERT INTO user_roles (user_id, role_id) VALUES (2,1);
+INSERT INTO user_roles (user_id, role_id) VALUES (2,2);
+INSERT INTO user_roles (user_id, role_id) VALUES (3,1);
+INSERT INTO user_roles (user_id, role_id) VALUES (3,2);
+INSERT INTO user_roles (user_id, role_id) VALUES (3,3);
