@@ -3,38 +3,42 @@ package org.woven.hrms.employee.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.woven.hrms.employee.entity.Role;
 import org.woven.hrms.employee.entity.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
-public class UserInfo extends User implements UserDetails {
+public class UserInfo implements UserDetails {
 
-    private final String username;
-    private final String password;
-    Collection<? extends GrantedAuthority> authorities;
+    private final User user;
 
     public UserInfo(final User user) {
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleName().toUpperCase()))
-                .toList();
-
+        this.user = user;
     }
+
     @Override
-    public String getUsername() {
-        return username;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        }
+
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
-
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    public String getUsername() {
+        return user.getUsername();
     }
 
     @Override

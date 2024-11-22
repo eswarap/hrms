@@ -33,9 +33,9 @@ VALUES (16 ,'Nina' ,'Lewis' ,1,'1991-06-18','2019-08-22','nina.lewis@example.com
 INSERT INTO employee (id ,first_name ,last_name ,gender ,birth_date ,joining_date ,email ,position )
 VALUES (17 ,'Oscar' ,'Lee' ,1,'1984-04-20','2017-05-10','oscar.lee@example.com','Financial Analyst');
 
-INSERT INTO users (id, username, password) VALUES ('1', 'user', 'password');
-INSERT INTO users (id, username, password) VALUES ('2', 'admin', 'password');
-INSERT INTO users (id, username, password) VALUES ('3', 'manager', 'password');
+INSERT INTO users (id, username, password) VALUES ('1', 'user', '$2a$08$I75twub1ADqRREKanYDWPubJ2eIPSNmu/EDT6d56n3lUa2N2CXRee');
+INSERT INTO users (id, username, password) VALUES ('2', 'admin', '$2a$08$I75twub1ADqRREKanYDWPubJ2eIPSNmu/EDT6d56n3lUa2N2CXRee');
+INSERT INTO users (id, username, password) VALUES ('3', 'manager', '$2a$08$I75twub1ADqRREKanYDWPubJ2eIPSNmu/EDT6d56n3lUa2N2CXRee');
 
 INSERT INTO roles (id, role_name) VALUES ('1', 'USER');
 INSERT INTO roles (id, role_name) VALUES ('2', 'ADMIN');
