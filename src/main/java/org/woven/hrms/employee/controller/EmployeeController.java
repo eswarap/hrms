@@ -29,26 +29,21 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable final Long id) {
         Optional<org.woven.hrms.employee.entity.Employee> employee = employeeService.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employeeDTO) {
-        org.woven.hrms.employee.entity.Employee employee = new org.woven.hrms.employee.entity.Employee();
-        employee.setFirstName(employeeDTO.getFirstName());
-        employee.setLastName(employeeDTO.getLastName());
-        employee.setGender(employeeDTO.getGender());
-        employee.setBirthDate(employeeDTO.getBirthDate());
-        org.woven.hrms.employee.entity.Employee savedEmployee = employeeService.addEmployee(employee);
-        return ResponseEntity.created(URI.create("/api/employees/" + savedEmployee.getId())).body(savedEmployee);
+    public ResponseEntity<Employee> addEmployee(@RequestBody final Employee employee) {
+        Employee savedEmployee = employeeService.addEmployee(employee);
+        return ResponseEntity.created(URI.create("/api/v1/hrms/employee/" + savedEmployee.getId())).body(savedEmployee);
     }
 
     @PutMapping("/employee/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable String id,
-                                                                                  @RequestBody Employee employeeDTO) {
-        org.woven.hrms.employee.entity.Employee employee = new org.woven.hrms.employee.entity.Employee();
+    public ResponseEntity<Employee> updateEmployee(@PathVariable final Long id,
+                                                   @RequestBody final Employee employeeDTO) {
+        Employee employee = new Employee();
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setGender(employeeDTO.getGender());
@@ -59,7 +54,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee/{id}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable String id) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }

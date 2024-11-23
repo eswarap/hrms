@@ -17,15 +17,15 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<Employee> getEmployeeById(String id) {
+    public Optional<Employee> getEmployeeById(final Long id) {
         return employeeRepository.findById(id);
     }
 
-    public Employee addEmployee(Employee employee) {
+    public Employee addEmployee(final Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    public Optional<Employee> updateEmployee(String id, Employee employee) {
+    public Optional<Employee> updateEmployee(final Long id, final Employee employee) {
         Optional<Employee> existingEmployee = employeeRepository.findById(id);
         if (existingEmployee.isPresent()) {
             Employee updatedEmployee = existingEmployee.get();
@@ -41,7 +41,7 @@ public class EmployeeService {
         return existingEmployee;
     }
 
-    public void deleteEmployee(String id) {
+    public void deleteEmployee(final Long id) {
         employeeRepository.deleteById(id);
     }
 }

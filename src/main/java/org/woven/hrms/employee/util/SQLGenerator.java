@@ -58,7 +58,7 @@ public class SQLGenerator {
 
     public static void main(final String[] args) {
 
-        Employee employee = new Employee("1", "John","Doe", Gender.Male,
+        Employee employee = new Employee(1L, "John","Doe", Gender.Male,
                 LocalDate.EPOCH,LocalDate.EPOCH,
                 "john.doe@example.com","Head Of operations");
         printSql(employee);

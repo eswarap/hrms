@@ -18,10 +18,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @Table(name = "ROLES")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private String id;
-
     private String roleName;
 }
