@@ -24,7 +24,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public List<org.woven.hrms.employee.entity.Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 

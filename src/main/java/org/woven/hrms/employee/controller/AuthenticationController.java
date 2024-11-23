@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.woven.hrms.employee.exception.HRMSException;
 import org.woven.hrms.employee.model.LoginRequest;
 import org.woven.hrms.employee.model.LoginResponse;
 import org.woven.hrms.employee.service.AuthService;
@@ -35,7 +36,7 @@ public class AuthenticationController {
         try {
             return "Welcome";
         } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new HRMSException(e);
         }
     }
 
