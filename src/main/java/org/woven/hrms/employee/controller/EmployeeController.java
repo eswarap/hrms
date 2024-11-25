@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.woven.hrms.employee.model.EmployeeDTO;
 import org.woven.hrms.employee.entity.Employee;
 import org.woven.hrms.employee.service.EmployeeService;
 
@@ -30,31 +29,26 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable final Long id) {
+        Optional<org.woven.hrms.employee.entity.Employee> employee = employeeService.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Employee employee = new Employee();
-        employee.setFirstName(employeeDTO.getFirstName());
-        employee.setLastName(employeeDTO.getLastName());
-        employee.setGender(employeeDTO.getGender());
-        employee.setBirthDate(employeeDTO.getBirthDate());
+    public ResponseEntity<Employee> addEmployee(@RequestBody final Employee employee) {
         Employee savedEmployee = employeeService.addEmployee(employee);
-        return ResponseEntity.created(URI.create("/api/employees/" + savedEmployee.getId())).body(savedEmployee);
+        return ResponseEntity.created(URI.create("/api/v1/hrms/employee/" + savedEmployee.getId())).body(savedEmployee);
     }
 
     @PutMapping("/employee/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
-                                                   @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable final Long id,
+                                                   @RequestBody final Employee employeeDTO) {
         Employee employee = new Employee();
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setGender(employeeDTO.getGender());
         employee.setBirthDate(employeeDTO.getBirthDate());
-        Optional<Employee> existingEmployee = employeeService.updateEmployee(id,
+        Optional<org.woven.hrms.employee.entity.Employee> existingEmployee = employeeService.updateEmployee(id,
                 employee);
         return existingEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

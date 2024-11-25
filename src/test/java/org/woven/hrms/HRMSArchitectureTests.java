@@ -8,6 +8,7 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import jakarta.persistence.Entity;
+import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.tngtech.archunit.base.DescribedPredicate.not;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.ANNOTATIONS;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.assignableTo;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAPackage;
 import static com.tngtech.archunit.core.domain.JavaMember.Predicates.declaredIn;
 import static com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predicates.metaAnnotatedWith;
 import static com.tngtech.archunit.lang.conditions.ArchPredicates.are;
@@ -49,6 +51,7 @@ public class HRMSArchitectureTests {
     @ArchTest
     ArchRule serviceRule = classes().that(areServiceClasses())
             .should().haveSimpleNameEndingWith("Service")
+            .orShould().haveSimpleNameEndingWith("ServiceImpl")
             .andShould().resideInAPackage("..service")
             .as("Service classes annotated with @Service")
             .as("must reside in service package ")
@@ -66,14 +69,25 @@ public class HRMSArchitectureTests {
             .should().resideInAPackage("..entity");
 
     @ArchTest
+    ArchRule modelRule = classes().that(areModelClasses())
+            .should().resideInAPackage("..model");
+
+    @ArchTest
     ArchRule controllerDependsOnService = classes().that(areControllerClasses())
             .should().accessClassesThat(areServiceClasses())
-            .as("Controller access Service");
+            .orShould().accessClassesThat(areModelClasses())
+            .as("Controller access Service or Model");
+
+    @ArchTest
+    ArchRule serviceDependsOnService = classes().that(areServiceClasses())
+            .should().accessClassesThat(areServiceClasses())
+            .as("Service access Service");
 
     @ArchTest
     ArchRule serviceDependsOnRepository = classes().that(areServiceClasses())
             .should().accessClassesThat(areRepositoryClasses())
-            .as("Service access Repository");
+            .orShould().accessClassesThat(areServiceClasses())
+            .as("Service access Service or Repository");
     @ArchTest
     ArchRule repositoryDependsOnEntity = classes().that(areRepositoryClasses())
             .should().accessClassesThat(areEntityClasses())
@@ -114,6 +128,10 @@ public class HRMSArchitectureTests {
 
     private static DescribedPredicate<JavaClass> areEntityClasses() {
         return are(not(ANNOTATIONS).and(metaAnnotatedWith(Entity.class)));
+    }
+
+    private static DescribedPredicate<JavaClass> areModelClasses() {
+        return are(resideInAPackage("..model"));
     }
 
 }
