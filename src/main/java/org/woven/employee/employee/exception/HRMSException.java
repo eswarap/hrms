@@ -1,4 +1,4 @@
-package org.woven.hrms.employee.exception;
+package org.woven.employee.employee.exception;
 
 import java.io.Serial;
 

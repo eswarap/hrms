@@ -1,9 +1,9 @@
-package org.woven.hrms.employee.service;
+package org.woven.employee.employee.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.woven.hrms.employee.entity.Employee;
-import org.woven.hrms.employee.repository.EmployeeRepository;
+import org.woven.employee.employee.entity.Employee;
+import org.woven.employee.employee.repository.EmployeeRepository;
 
 import java.util.List;
 import java.util.Optional;

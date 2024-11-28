@@ -1,4 +1,4 @@
-package org.woven.hrms;
+package org.woven.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

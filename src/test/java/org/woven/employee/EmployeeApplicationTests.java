@@ -1,4 +1,4 @@
-package org.woven.hrms;
+package org.woven.employee;
 
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -16,11 +16,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.MediaType;
-import org.woven.hrms.employee.entity.Employee;
-import org.woven.hrms.employee.model.Gender;
-import org.woven.hrms.employee.model.LoginRequest;
-import org.woven.hrms.employee.model.LoginResponse;
+import org.woven.employee.employee.entity.Employee;
+import org.woven.employee.employee.model.Gender;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,7 +27,7 @@ import static io.restassured.RestAssured.given;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class HRMSApplicationTests {
+class EmployeeApplicationTests {
 
 	@LocalServerPort
 	private Integer port;
@@ -39,12 +36,6 @@ class HRMSApplicationTests {
 	 void setUp() {
 		RestAssured.port = port;
 		RestAssured.defaultParser = Parser.JSON;
-		LoginRequest request = new LoginRequest("user","password");
-		token = given().basePath("/api/v1/auth/login")
-				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.body(request)
-				.when().post().then().statusCode(200)
-				.extract().response().as(LoginResponse.class).getAccessToken();
 	}
 	@Test
 	@Order(2)

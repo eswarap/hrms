@@ -1,8 +1,8 @@
 server:
-  port: 8080
+  port: 8090
 spring:
   application:
-      name: HRMS
+      name: employee-service
   datasource:
     url: jdbc:h2:mem:hrmsdb;DB_CLOSE_DELAY=-1;MODE=HSQLDB;NON_KEYWORDS=ID;
     driverClassName: org.h2.Driver
@@ -32,6 +32,13 @@ spring:
       mode: always
   logging:
     level:
-      org:
-        hibernate:
-          type: trace
+      org.springframework.cloud.gateway: TRACE
+      reactor.netty.http.client: TRACE
+      org.hibernate,type: trace
+      org.reactor:netty: INFO
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

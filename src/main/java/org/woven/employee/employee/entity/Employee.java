@@ -1,4 +1,4 @@
-package org.woven.hrms.employee.entity;
+package org.woven.employee.employee.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.woven.hrms.employee.model.Gender;
+import org.woven.employee.employee.model.Gender;
 
 import java.time.LocalDate;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package org.woven.hrms.employee.controller;
+package org.woven.employee.employee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.woven.hrms.employee.entity.Employee;
-import org.woven.hrms.employee.service.EmployeeService;
+import org.woven.employee.employee.entity.Employee;
+import org.woven.employee.employee.service.EmployeeService;
 
 import java.net.URI;
 import java.util.List;
@@ -30,7 +30,7 @@ public class EmployeeController {
 
     @GetMapping("/employee/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable final Long id) {
-        Optional<org.woven.hrms.employee.entity.Employee> employee = employeeService.getEmployeeById(id);
+        Optional<org.woven.employee.employee.entity.Employee> employee = employeeService.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -48,7 +48,7 @@ public class EmployeeController {
         employee.setLastName(employeeDTO.getLastName());
         employee.setGender(employeeDTO.getGender());
         employee.setBirthDate(employeeDTO.getBirthDate());
-        Optional<org.woven.hrms.employee.entity.Employee> existingEmployee = employeeService.updateEmployee(id,
+        Optional<org.woven.employee.employee.entity.Employee> existingEmployee = employeeService.updateEmployee(id,
                 employee);
         return existingEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

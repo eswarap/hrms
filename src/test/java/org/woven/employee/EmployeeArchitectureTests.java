@@ -1,4 +1,4 @@
-package org.woven.hrms;
+package org.woven.employee;
 
 import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.JavaClass;
@@ -8,7 +8,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import jakarta.persistence.Entity;
-import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ import static com.tngtech.archunit.library.GeneralCodingRules.NO_CLASSES_SHOULD_
 
 @AnalyzeClasses(packages = "org.woven.hrms",
         importOptions = ImportOption.DoNotIncludeTests.class)
-public class HRMSArchitectureTests {
+public class EmployeeArchitectureTests {
     @ArchTest
     private final ArchRule no_generic_exceptions = NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS;
 

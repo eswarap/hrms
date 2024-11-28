@@ -1,9 +1,7 @@
-package org.woven.hrms.employee.util;
+package org.woven.employee.employee.util;
 
-import org.woven.hrms.employee.entity.Employee;
-import org.woven.hrms.employee.entity.Role;
-import org.woven.hrms.employee.entity.User;
-import org.woven.hrms.employee.model.Gender;
+import org.woven.employee.employee.entity.Employee;
+import org.woven.employee.employee.model.Gender;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -39,16 +37,6 @@ public class SQLGenerator {
         sql.append(");");
 
         return sql.toString();
-    }
-
-    private static void printSql(final User user) {
-        String sql = generateInsertSQL(user);
-        System.out.println(sql);
-    }
-
-    private static void printSql(final Role role) {
-        String sql = generateInsertSQL(role);
-        System.out.println(sql);
     }
 
     private static void printSql(final Employee employee) {
